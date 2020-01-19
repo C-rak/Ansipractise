@@ -10,24 +10,24 @@
       resource_group: "RakeshRG"
       name: "vnet1"
       address_prefixes: "10.0.0.0/16"
-  - name: Add subnet 
+   - name: Add subnet 
     azure_rm_subnet:
       resource_group: "RakeshRG"
       name: "defaultsubnet"
       address_prefix: "10.0.0.0/24"
       virtual_network: "vnet1"
- - name: Create virtual network vnet2
+   - name: Create virtual network vnet2
     azure_rm_virtualnetwork:
       resource_group: "RakeshRG"
       name: "vnet2"
       address_prefixes: "10.1.0.0/16"
-  - name: Add subnet 
+   - name: Add subnet 
     azure_rm_subnet:
       resource_group: "RakeshRG"
       name: "defaultsubnet"
       address_prefix: "10.1.0.0/24"
       virtual_network: "vnet2"     
-  - name: Create virtual network vnet3
+   - name: Create virtual network vnet3
     azure_rm_virtualnetwork:
       resource_group: "RakeshRG"
       name: "vnet3"
