@@ -1,4 +1,4 @@
----
+
 - hosts: localhost
   tasks:
    - name: Create a resource group
@@ -38,4 +38,4 @@
       name: "defaultsubnet"
       address_prefix: "10.3.0.0/24"
       virtual_network: "vnet3"     
-...
+
