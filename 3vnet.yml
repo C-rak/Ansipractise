@@ -2,11 +2,11 @@
 - hosts: localhost
   tasks:
    - name: Create a resource group
-    azure_rm_resourcegroup:
+     azure_rm_resourcegroup:
       name: "RakeshRG"
       location: "eastus"
    - name: Create virtual network vnet1
-    azure_rm_virtualnetwork:
+     azure_rm_virtualnetwork:
       resource_group: "RakeshRG"
       name: "vnet1"
       address_prefixes: "10.0.0.0/16"
