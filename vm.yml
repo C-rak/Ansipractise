@@ -6,7 +6,7 @@
   hosts: localhost
   connection: local
   vars:
-    resource_group: "RK11-rg"
+    resource_group: "rakesh-rg"
     vm_name: webvm
     location: eastus
   tasks:
@@ -40,9 +40,7 @@
           destination_port_range: 3389
           access: Allow
           priority: 1001
-          direction: Inbound
-      Subnets:
-        name: "websubnet"      
+          direction: Inbound  
   - name: Create virtual network inteface card
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
@@ -55,7 +53,7 @@
       admin_username: 'vmadmin'
       admin_password: "123#ntms123#"
       os_type: Windows
-      os_disktype: Managed
+      managed_disk_type: StandardSSD_LRS
       image:
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
