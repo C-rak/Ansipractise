@@ -41,10 +41,10 @@
           access: Allow
           priority: 1001
           direction: Inbound
-        - Subnets:
-           - name: "websubnet"
-             properties:
-             address_prefix: "10.0.1.0/24"                       
+      Subnets:
+        - name: "websubnet"
+          properties:
+            address_prefix: "10.0.1.0/24"                       
   - name: Create virtual network inteface card
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
