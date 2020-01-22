@@ -37,8 +37,8 @@
       resource_group: "{{RG-name}}"
       name: "s4Vnet"
       address_prefixes: "10.6.0.0/16"
-    - name: Create Network Security Group that RDP
-      azure_rm_securitygroup:
+   - name: Create Network Security Group that RDP
+     azure_rm_securitygroup:
        resource_group: "{{ RG-name}}"
        name: "h1NSG"
        rules:
