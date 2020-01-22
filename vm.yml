@@ -6,7 +6,7 @@
   hosts: localhost
   connection: local
   vars:
-    resource_group: "rakeshrg"
+    resource_group: "RK-rg"
     vm_name: webvm
     location: eastus
   tasks:
