@@ -1,0 +1,11 @@
+---
+- name: delete test resource group
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: delete test resource group
+    azure_rm_resourcegroup:
+      name: "rg1"
+      force: True
+      state: absent
+...      
