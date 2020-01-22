@@ -6,7 +6,7 @@
   hosts: localhost
   connection: local
   vars:
-    resource_group: "RK1-rg"
+    resource_group: "RK11-rg"
     vm_name: webvm
     location: eastus
   tasks:
@@ -42,7 +42,7 @@
           priority: 1001
           direction: Inbound
       Subnets:
-        - name: "websubnet"      
+        name: "websubnet"      
   - name: Create virtual network inteface card
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
