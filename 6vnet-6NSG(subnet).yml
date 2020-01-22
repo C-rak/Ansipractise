@@ -48,8 +48,8 @@
           access: Allow
           priority: 1001
           direction: Inbound  
-    - name: Create Network Security Group that RDP
-      azure_rm_securitygroup:
+   - name: Create Network Security Group that RDP
+     azure_rm_securitygroup:
        resource_group: "{{ RG-name}}"
        name: "s3NSG"
        rules:
@@ -103,20 +103,20 @@
           access: Allow
           priority: 1001
           direction: Inbound             
-   - name: Add subnet 
-     azure_rm_subnet:
-      resource_group: "{{RG-name}}"
-      name: "defaultsubnet"
-      address_prefix: "10.1.0.0/24"
-      virtual_network: "h1Vnet"
-      security_group: "h1NSG"
-   - name: Add subnet 
-     azure_rm_subnet:
-      resource_group: "{{RG-name}}"
-      name: "defaultsubnet"
-      address_prefix: "10.2.0.0/24"
-      virtual_network: "h2Vnet"
-      security_group: "h2NSG"
+    - name: Add subnet 
+      azure_rm_subnet:
+       resource_group: "{{RG-name}}"
+       name: "defaultsubnet"
+       address_prefix: "10.1.0.0/24"
+       virtual_network: "h1Vnet"
+       security_group: "h1NSG"
+    - name: Add subnet 
+      azure_rm_subnet:
+       resource_group: "{{RG-name}}"
+       name: "defaultsubnet"
+       address_prefix: "10.2.0.0/24"
+       virtual_network: "h2Vnet"
+       security_group: "h2NSG"
    - name: Add subnet 
      azure_rm_subnet:
       resource_group: "{{RG-name}}"
