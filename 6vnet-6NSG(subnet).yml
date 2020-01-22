@@ -11,36 +11,43 @@
      azure_rm_virtualnetwork:
       resource_group: "{{rgname}}"
       name: "h1Vnet"
+      location: "eastus"
       address_prefixes: "10.1.0.0/16"
    - name: Create virtual network vnet2
      azure_rm_virtualnetwork:
       resource_group: "{{rgname}}"
       name: "h2Vnet"
+      location: "westus"
       address_prefixes: "10.2.0.0/16"
    - name: Create virtual network vnet3
      azure_rm_virtualnetwork:
       resource_group: "{{rgname}}"
       name: "s1Vnet"
+      location: "eastus"
       address_prefixes: "10.3.0.0/16"
    - name: Create virtual network vnet4
      azure_rm_virtualnetwork:
       resource_group: "{{rgname}}"
       name: "s2Vnet"
+      location: "eastus"
       address_prefixes: "10.4.0.0/16"
    - name: Create virtual network vnet5
      azure_rm_virtualnetwork:
       resource_group: "{{rgname}}"
       name: "s3Vnet"
+      location: "westus"
       address_prefixes: "10.5.0.0/16"
    - name: Create virtual network vnet6
      azure_rm_virtualnetwork:
       resource_group: "{{rgname}}"
       name: "s4Vnet"
+      location: "westus"
       address_prefixes: "10.6.0.0/16"
    - name: Create Network Security Group that RDP
      azure_rm_securitygroup:
        resource_group: "{{ rgname}}"
        name: "h1NSG"
+       location: "eastus"
        rules:
         - name: RDP
           protocol: Tcp
@@ -52,6 +59,7 @@
      azure_rm_securitygroup:
        resource_group: "{{ rgname}}"
        name: "s3NSG"
+       location: "eastus"
        rules:
         - name: RDP
           protocol: Tcp
