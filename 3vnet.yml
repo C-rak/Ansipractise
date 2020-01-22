@@ -1,18 +1,111 @@
 
 - hosts: localhost
+  vars: 
+    RG-name: "rg1"
   tasks:
    - name: Create a resource group
      azure_rm_resourcegroup:
-      name: "RakeshRG"
+      name: "{{RG-name}}"
       location: "eastus"
    - name: Create virtual network vnet1
      azure_rm_virtualnetwork:
-      resource_group: "RakeshRG"
-      name: "vnet1"
-      address_prefixes: "10.0.0.0/16"
+      resource_group: "{{RG-name}}"
+      name: "Hub1Vnet"
+      address_prefixes: "10.1.0.0/16"
+   - name: Create virtual network vnet2
+     azure_rm_virtualnetwork:
+      resource_group: "{{RG-name}}"
+      name: "Hub2Vnet"
+      address_prefixes: "10.2.0.0/16"
+   - name: Create virtual network vnet3
+     azure_rm_virtualnetwork:
+      resource_group: "{{RG-name}}"
+      name: "Spoke1Vnet"
+      address_prefixes: "10.3.0.0/16"
+   - name: Create virtual network vnet4
+     azure_rm_virtualnetwork:
+      resource_group: "{{RG-name}}"
+      name: "spoke2Vnet"
+      address_prefixes: "10.4.0.0/16"
+   - name: Create virtual network vnet5
+     azure_rm_virtualnetwork:
+      resource_group: "{{RG-name}}"
+      name: "spoke3Vnet"
+      address_prefixes: "10.5.0.0/16"
+   - name: Create virtual network vnet6
+     azure_rm_virtualnetwork:
+      resource_group: "{{RG-name}}"
+      name: "spoke4Vnet"
+      address_prefixes: "10.6.0.0/16"
+    - name: Create Network Security Group that RDP
+      azure_rm_securitygroup:
+       resource_group: "{{ RG-name}}"
+       name: "Hub1NSG"
+       rules:
+        - name: RDP
+          protocol: Tcp
+          destination_port_range: 3389
+          access: Allow
+          priority: 1001
+          direction: Inbound  
+    - name: Create Network Security Group that RDP
+      azure_rm_securitygroup:
+       resource_group: "{{ RG-name}}"
+       name: "spoke3NSG"
+       rules:
+        - name: RDP
+          protocol: Tcp
+          destination_port_range: 3389
+          access: Allow
+          priority: 1001
+          direction: Inbound  
+    - name: Create Network Security Group that RDP
+      azure_rm_securitygroup:
+       resource_group: "{{ RG-name}}"
+       name: "spoke2NSG"
+       rules:
+        - name: RDP
+          protocol: Tcp
+          destination_port_range: 3389
+          access: Allow
+          priority: 1001
+          direction: Inbound  
+    - name: Create Network Security Group that RDP
+      azure_rm_securitygroup:
+       resource_group: "{{ RG-name}}"
+       name: "hub2NSG"
+       rules:
+        - name: RDP
+          protocol: Tcp
+          destination_port_range: 3389
+          access: Allow
+          priority: 1001
+          direction: Inbound  
+    - name: Create Network Security Group that RDP
+      azure_rm_securitygroup:
+       resource_group: "{{ RG-name}}"
+       name: "spoke1NSG"
+       rules:
+        - name: RDP
+          protocol: Tcp
+          destination_port_range: 3389
+          access: Allow
+          priority: 1001
+          direction: Inbound            
+    - name: Create Network Security Group that RDP
+      azure_rm_securitygroup:
+       resource_group: "{{ RG-name}}"
+       name: "spoke4NSG"
+       rules:
+        - name: RDP
+          protocol: Tcp
+          destination_port_range: 3389
+          access: Allow
+          priority: 1001
+          direction: Inbound             
    - name: Add subnet 
      azure_rm_subnet:
-      resource_group: "RakeshRG"
+      resource_group: "{{RG-name}}"
       name: "defaultsubnet"
       address_prefix: "10.0.0.0/24"
       virtual_network: "vnet1"
