@@ -1,4 +1,4 @@
-
+---
 - hosts: localhost
   vars: 
     RG-name: "rg1"
@@ -147,3 +147,4 @@
       security_group: "s4NSG"
     
 
+...
