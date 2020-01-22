@@ -124,7 +124,7 @@
       address_prefix: "10.3.0.0/24"
       virtual_network: "s1Vnet"
       security_group: "s1NSG"
-     - name: Add subnet 
+   - name: Add subnet 
      azure_rm_subnet:
       resource_group: "{{RG-name}}"
       name: "defaultsubnet"
