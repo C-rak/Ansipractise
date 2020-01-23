@@ -213,8 +213,8 @@
       location: "westus"
       virtual_network: "s4Vnet"
       subnet: "defaultsubnet"
-  - name: Create VM hub1
-    azure_rm_virtualmachine:
+   - name: Create VM hub1
+     azure_rm_virtualmachine:
       name: "h1-VM"
       resource_group: "{{ rgname }}"
       location: "eastus"
@@ -235,8 +235,8 @@
       virtual_network_name: "h1Vnet"
       subnet_name: "defaultsubnet" 
       network_interface_names: "h1nic"
-  - name: Create VM hub2
-    azure_rm_virtualmachine:
+   - name: Create VM hub2
+     azure_rm_virtualmachine:
       name: "h2-VM"
       resource_group: "{{ rgname }}"
       location: "westus"
@@ -257,8 +257,8 @@
       virtual_network_name: "h2Vnet"
       subnet_name: "defaultsubnet"      
       network_interface_names: "h2nic" 
-  - name: Create VM spoke1
-    azure_rm_virtualmachine:
+   - name: Create VM spoke1
+     azure_rm_virtualmachine:
       name: "s1-VM"
       resource_group: "{{ rgname }}"
       location: "eastus"
@@ -279,8 +279,8 @@
       virtual_network_name: "s1Vnet"
       subnet_name: "defaultsubnet"      
       network_interface_names: "s1nic"    
-  - name: Create VM spoke3
-    azure_rm_virtualmachine:
+   - name: Create VM spoke3
+     azure_rm_virtualmachine:
       name: "s3-VM"
       resource_group: "{{ rgname }}"
       location: "westus"
@@ -301,8 +301,8 @@
       virtual_network_name: "s3Vnet"
       subnet_name: "defaultsubnet"
       network_interface_names: "s3nic"      
-  - name: Create VM spoke4
-    azure_rm_virtualmachine:
+   - name: Create VM spoke4
+     azure_rm_virtualmachine:
       name: "s4-VM"
       resource_group: "{{ rgname }}"
       location: "westus"
@@ -323,8 +323,8 @@
       virtual_network_name: "s4Vnet"
       subnet_name: "defaultsubnet"
       network_interface_names: "s4nic"      
-  - name: Create VM spoke2
-    azure_rm_virtualmachine:
+   - name: Create VM spoke2
+     azure_rm_virtualmachine:
       name: "s2-VM"
       resource_group: "{{ rgname }}"
       location: "eastus"
