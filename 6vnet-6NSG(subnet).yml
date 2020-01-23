@@ -177,7 +177,7 @@
       virtual_network: "h1Vnet"
       subnet: "defaultsubnet"
       public_ip_name: "h1pip"
-      security_group: "h1NSG"
+      create_with_security_group: no      
    - name: Create virtual network inteface card
      azure_rm_networkinterface:
       resource_group: "{{ rgname }}"
@@ -186,7 +186,7 @@
       virtual_network: "h2Vnet"
       subnet: "defaultsubnet"
       public_ip_name: "h2pip"
-      security_group: "h2NSG"      
+      create_with_security_group: no           
    - name: Create virtual network inteface card
      azure_rm_networkinterface:
       resource_group: "{{ rgname }}"
@@ -194,7 +194,7 @@
       location: "eastus"
       virtual_network: "s1Vnet"
       subnet: "defaultsubnet"
-      security_group: "s1NSG"      
+      create_with_security_group: no          
    - name: Create virtual network inteface card
      azure_rm_networkinterface:
       resource_group: "{{ rgname }}"
@@ -202,7 +202,7 @@
       location: "eastus"
       virtual_network: "s2Vnet"
       subnet: "defaultsubnet"
-      security_group: "s2NSG"      
+      create_with_security_group: no            
    - name: Create virtual network inteface card
      azure_rm_networkinterface:
       resource_group: "{{ rgname }}"
@@ -210,7 +210,7 @@
       location: "westus"
       virtual_network: "s3Vnet"
       subnet: "defaultsubnet"
-      security_group: "s3NSG"      
+      create_with_security_group: no           
    - name: Create virtual network inteface card
      azure_rm_networkinterface:
       resource_group: "{{ rgname }}"
@@ -218,7 +218,7 @@
       location: "westus"
       virtual_network: "s4Vnet"
       subnet: "defaultsubnet"
-      security_group: "s4NSG"      
+      create_with_security_group: no            
    - name: Create VM hub1
      azure_rm_virtualmachine:
       name: "h1-VM"
@@ -274,8 +274,6 @@
       os_type: Windows
       managed_disk_type: StandardSSD_LRS
       os_disk_size_gb: 30
-      boot_diagnostics: 
-        enabled: no      
       image:
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
@@ -296,8 +294,6 @@
       os_type: Windows
       managed_disk_type: StandardSSD_LRS
       os_disk_size_gb: 30
-      boot_diagnostics: 
-        enabled: no      
       image:
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
@@ -318,8 +314,6 @@
       os_type: Windows
       managed_disk_type: StandardSSD_LRS
       os_disk_size_gb: 30
-      boot_diagnostics: 
-        enabled: no      
       image:
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
@@ -340,8 +334,6 @@
       os_type: Windows
       managed_disk_type: StandardSSD_LRS
       os_disk_size_gb: 30
-      boot_diagnostics: 
-        enabled: no      
       image:
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
