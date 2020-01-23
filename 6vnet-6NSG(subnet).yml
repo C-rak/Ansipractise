@@ -177,6 +177,7 @@
       virtual_network: "h1Vnet"
       subnet: "defaultsubnet"
       public_ip_name: "h1pip"
+      security_group: "h1NSG"
    - name: Create virtual network inteface card
      azure_rm_networkinterface:
       resource_group: "{{ rgname }}"
@@ -185,6 +186,7 @@
       virtual_network: "h2Vnet"
       subnet: "defaultsubnet"
       public_ip_name: "h2pip"
+      security_group: "h2NSG"      
    - name: Create virtual network inteface card
      azure_rm_networkinterface:
       resource_group: "{{ rgname }}"
@@ -192,6 +194,7 @@
       location: "eastus"
       virtual_network: "s1Vnet"
       subnet: "defaultsubnet"
+      security_group: "s1NSG"      
    - name: Create virtual network inteface card
      azure_rm_networkinterface:
       resource_group: "{{ rgname }}"
@@ -199,6 +202,7 @@
       location: "eastus"
       virtual_network: "s2Vnet"
       subnet: "defaultsubnet"
+      security_group: "s2NSG"      
    - name: Create virtual network inteface card
      azure_rm_networkinterface:
       resource_group: "{{ rgname }}"
@@ -206,6 +210,7 @@
       location: "westus"
       virtual_network: "s3Vnet"
       subnet: "defaultsubnet"
+      security_group: "s3NSG"      
    - name: Create virtual network inteface card
      azure_rm_networkinterface:
       resource_group: "{{ rgname }}"
@@ -213,6 +218,7 @@
       location: "westus"
       virtual_network: "s4Vnet"
       subnet: "defaultsubnet"
+      security_group: "s4NSG"      
    - name: Create VM hub1
      azure_rm_virtualmachine:
       name: "h1-VM"
