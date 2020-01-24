@@ -31,6 +31,7 @@
        name: "defaultsubnet"
        address_prefix: "10.1.0.0/24"
        virtual_network: "h1Vnet"
+       security_group: "h1NSG"         
    - name: Create virtual network inteface card
      azure_rm_networkinterface:
       resource_group: "{{ rgname }}"
@@ -38,5 +39,5 @@
       location: "eastus"
       virtual_network: "h1Vnet"
       subnet: "defaultsubnet"
-      security_group: "h1NSG"      
-...           
+      create_with_security_group: "no"     
+...      
