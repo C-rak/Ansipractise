@@ -10,9 +10,9 @@
    - name: Create virtual network vnet1
      azure_rm_virtualnetwork:
       resource_group: "{{rgname}}"
-      name: "{{item}}"
+      name: "{{ item }}"
       location: "eastus"
-      loop:
-        -h1vnet
-        -s1vnet
+     loop:
+       - h1vnet
+       - s1vnet
 ...
