@@ -14,7 +14,94 @@
       location: "{{ item.location }}"
       address_prefixes: "{{ item.add_pref }}"
      loop:
-       - {name: 'hubvnet', add_pref: '10.10.0.0/16', location: 'eastus'}
-       - {name: 'spokevnet', add_pref: '10.10.1.0/16', location: 'eastus'}
+       - {name: 'hub1vnet', add_pref: '10.10.0.0/16', location: 'eastus'}
+       - {name: 'spoke1vnet', add_pref: '10.11.0.0/16', location: 'eastus'}
+       - {name: 'spoke2vnet', add_pref: '10.12.0.0/16', location: 'eastus'}
+       - {name: 'hub2vnet', add_pref: '10.13.0.0/16', location: 'westus'}
+       - {name: 'spoke3vnet', add_pref: '10.14.0.0/16', location: 'westus'}
+       - {name: 'spoke4vnet', add_pref: '10.15.0.0/16', location: 'westus'}
+   - name: Create Network Security Group 
+     azure_rm_securitygroup:
+       resource_group: "{{ rgname}}"
+       name: "{{ item.name }}"
+       location: "{{ item.location }}"
+       rules:
+        - name: RDP
+          protocol: any
+          destination_port_range: 3389
+          access: Allow
+          priority: 110
+          direction: Inbound  
+     loop:
+      - {name: 'h1nsg', location: 'eastus'}
+      - {name: 's1nsg', location: 'eastus'}
+      - {name: 's2nsg', location: 'eastus'}
+      - {name: 'h2nsg', location: 'westus'}
+      - {name: 's3nsg', location: 'westus'}
+      - {name: 's4nsg', location: 'westus'}
+   - name: Add subnet 
+     azure_rm_subnet:
+       resource_group: "{{rgname}}"
+       name: "defaultsubnet"
+       address_prefix: "{{ item.add_pref }}"
+       virtual_network: "{{ item.vnet }}"
+       security_group: "{{ item.nsg }}"
+     loop:
+      - { add_pref: '10.10.0.0/24', vnet: 'hub1vnet', nsg: 'h1nsg' }
+      - { add_pref: '10.11.0.0/24', vnet: 'spoke1vnet', nsg: 's1nsg' }
+      - { add_pref: '10.12.0.0/24', vnet: 'spoke2vnet', nsg: 's2nsg' }
+      - { add_pref: '10.13.0.0/24', vnet: 'hub2vnet', nsg: 'h2nsg' }
+      - { add_pref: '10.14.0.0/24', vnet: 'spoke3vnet', nsg: 's3nsg' }
+      - { add_pref: '10.15.0.0/24', vnet: 'spoke4vnet', nsg: 's4nsg' }
+   - name: Create public IP address
+     azure_rm_publicipaddress:
+      resource_group: "{{ rgname }}"
+      allocation_method: Dynamic
+      name: "{{ item.name }}"
+      location: "{{ item.location }}"
+     loop:
+      - {name: 'h1pip', location: 'eastus' }
+      - {name: 'h2pip', location: 'westus' }
+   - name: Create virtual network inteface card
+     azure_rm_networkinterface:
+      resource_group: "{{ rgname }}"
+      name: "h1nic"
+      location: "eastus"
+      virtual_network: "h1Vnet"
+      subnet: "defaultsubnet"
+      create_with_security_group: "no" 
+     loop:
+      - {name: 'h1nic', location: 'eastus', vnet: 'hub1vnet' }
+      - {name: 's1nic', location: 'eastus', vnet: 'spoke1vnet' }
+      - {name: 's2nic', location: 'eastus', vnet: 'spoke2vnet' }
+      - {name: 'h2nic', location: 'westus', vnet: 'hub2vnet' }
+      - {name: 's3nic', location: 'westus', vnet: 'spoke3vnet' }
+      - {name: 's4nic', location: 'westus', vnet: 'spoke4vnet' }
+   - name: Create VM 
+     azure_rm_virtualmachine:
+      name: "{{ item.name }}"
+      resource_group: "{{ rgname }}"
+      location: "{{ item.location }}"
+      state: present
+      admin_username: 'vmadmin'
+      admin_password: "123#ntms123#"
+      os_type: Windows
+      managed_disk_type: StandardSSD_LRS
+      image:
+        offer: WindowsServer
+        publisher: MicrosoftWindowsServer
+        sku: 2016-Datacenter
+        version: latest
+      vm_size: Standard_DS1_v2   
+      virtual_network_name: "{{ item.vnet }}"
+      subnet_name: "defaultsubnet" 
+      network_interface_names: "{{ item.nic }}"
+     loop:
+      - {name: 'hub1vm', location: 'eastus', vnet: 'hub1vnet', nic: 'h1nic'}
+      - {name: 'spoke1vm', location: 'eastus', vnet: 'spoke1vnet', nic: 's1nic'}
+      - {name: 'spoke2vm', location: 'eastus', vnet: 'spoke2vnet', nic: 's2nic'}
+      - {name: 'hub2vm', location: 'westus', vnet: 'hub2vnet', nic: 'h2nic'}
+      - {name: 'spoke3vm', location: 'westus', vnet: 'spoke3vnet', nic: 's3nic'}
+      - {name: 'spoke4vm', location: 'westus', vnet: 'spoke4vnet', nic: 's4nic'}
 ...
 
