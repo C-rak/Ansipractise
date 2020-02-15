@@ -65,9 +65,9 @@
    - name: Create virtual network inteface card
      azure_rm_networkinterface:
       resource_group: "{{ rgname }}"
-      name: "h1nic"
-      location: "eastus"
-      virtual_network: "h1Vnet"
+      name: "{{ item.name }}"
+      location: "{{ item.location }}"
+      virtual_network: "{{ item.vnet }}"
       subnet: "defaultsubnet"
       create_with_security_group: "no" 
      loop:
