@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+  hosts: localhost
   vars: 
     rgname: "rg1"
   tasks:
