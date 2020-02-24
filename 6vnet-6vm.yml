@@ -1,8 +1,8 @@
 ---
-- hosts: localhost
-  vars: 
-    rgname: "rg1"
-  tasks:
+vars: 
+  rgname: "rg1"
+steps: 
+- tasks:
    - name: Create a resource group
      azure_rm_resourcegroup:
       name: "{{rgname}}"
